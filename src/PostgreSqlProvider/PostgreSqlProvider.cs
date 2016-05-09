@@ -17,12 +17,12 @@ namespace PostgreSqlProvider
 
 		public Dct GetDct(int id)
 		{
-			return this._context.Dcts.Include(d => d.Sections.Select(s => s.Fields)).First(t => t.Id == id);
+			return this._context.Dcts.Include(d => d.Sections).ThenInclude(s => s.Fields).First(t => t.Id == id);
 		}
 
 		public IQueryable<Dct> GetDcts()
 		{
-			return this._context.Dcts.Include(d => d.Sections.Select(s => s.Fields));
+			return this._context.Dcts.Include(d => d.Sections).ThenInclude(s => s.Fields);
 		}
 	}
 }
