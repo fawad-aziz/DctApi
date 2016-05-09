@@ -4,6 +4,8 @@
     {
 		public int Id { get; set; }
 
+		public int DctSectionId { get; set; }
+
 		public string Name { get; set; }
 
 		public bool Required { get; set; }

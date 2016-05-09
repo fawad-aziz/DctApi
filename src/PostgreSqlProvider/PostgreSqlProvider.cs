@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace PostgreSqlProvider
 {
+	using Microsoft.Data.Entity;
+
 	public class PostgreSqlProvider : IDataAccessProvider
 	{
 		private readonly DctContext _context;
@@ -15,12 +17,12 @@ namespace PostgreSqlProvider
 
 		public Dct GetDct(int id)
 		{
-			return this._context.Dcts.First(t => t.Id == id);
+			return this._context.Dcts.Include(d => d.Sections.Select(s => s.Fields)).First(t => t.Id == id);
 		}
 
 		public IQueryable<Dct> GetDcts()
 		{
-			return this._context.Dcts;
+			return this._context.Dcts.Include(d => d.Sections.Select(s => s.Fields));
 		}
 	}
 }

@@ -6,6 +6,8 @@ namespace DctDomainModel.Model
     {
 		public int Id { get; set; }
 
+		public int DctId { get; set; }
+
 		public string Title { get; set; }
 
 		public List<DctField> Fields { get; set; }
