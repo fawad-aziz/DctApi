@@ -3,17 +3,13 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DctDomainModel;
+using Microsoft.AspNet.Mvc.Formatters;
+using Newtonsoft.Json;
+using PostgreSqlProvider;
 
 namespace DctApi
 {
-	using DctDomainModel;
-
-	using Microsoft.AspNet.Mvc.Formatters;
-
-	using Newtonsoft.Json;
-
-	using PostgreSqlProvider;
-
 	public class Startup
 	{
 		public Startup(IHostingEnvironment env)
@@ -30,7 +26,7 @@ namespace DctApi
 		{
 			// Add framework services.
 			services.AddEntityFramework().AddNpgsql().AddDbContext<DctContext>();
-			services.AddScoped<IDataAccessProvider, PostgreSqlProvider>();
+			services.AddScoped<IDataAccessProvider, PostgreSqlProvider.PostgreSqlProvider>();
 
 			var jsonOutputFormatter = new JsonOutputFormatter
 				                          {
