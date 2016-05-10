@@ -37,6 +37,7 @@ namespace DctApi
 									                          ReferenceLoopHandling.Ignore
 							                          }
 				                          };
+			services.AddCors();
 			services.AddMvc(
 				options =>
 					{
@@ -53,6 +54,7 @@ namespace DctApi
 
 			app.UseIISPlatformHandler();
 			app.UseStaticFiles();
+			app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader());
 			app.UseMvc();
 		}
 
